@@ -942,12 +942,22 @@
             e.target.style.display = 'none';
             document.getElementById('successMessage').classList.add('show');
             
-            // Optional: Send to a form service like Formspree
-            // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-            //     method: 'POST',
-            //     body: formData,
-            //     headers: { 'Accept': 'application/json' }
-            // });
+            // Send to Formspree
+fetch('https://formspree.io/f/https://formspree.io/f/xkgpzzav', {  // ← Put your actual ID here
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+}).then(response => {
+    if (response.ok) {
+        e.target.style.display = 'none';
+        document.getElementById('successMessage').classList.add('show');
+        trackEvent('Form', 'submit', 'Signup Success');
+    } else {
+        alert('Oops! There was a problem submitting your form');
+    }
+}).catch(error => {
+    alert('Oops! There was a problem submitting your form');
+});
         });
     </script>
 </body>
